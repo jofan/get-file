@@ -1,0 +1,18 @@
+{
+  "name": "get-file",
+  "repo": "jofan/get-file",
+  "description": "Get file locally or on server. Good for when developing iOS web content stored locally",
+  "version": "0.0.1",
+  "keywords": [
+    "ajax",
+    "files",
+    "utility",
+    "local"
+  ],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
