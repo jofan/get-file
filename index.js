@@ -12,7 +12,7 @@ module.exports = getFile;
  * @api private
  */
 function getXHR() {
-  if (window.XMLHttpRequest) { return new XMLHttpRequest; } 
+  if (window.XMLHttpRequest) { return new XMLHttpRequest(); } 
   else {
     try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
     try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
@@ -42,7 +42,9 @@ function getFile(path, callback) {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         xhr.onreadystatechange = function() {};
-        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304 || (xhr.status == 0 && window.location.protocol == 'file:')) {
+        var _status = parseInt(xhr.status);
+
+        if ((_status >= 200 && _status < 300) || _status === 304 || (_status === 0 && window.location.protocol == 'file:')) {
           callback(null, xhr.responseText);
         }
         else {
@@ -54,13 +56,13 @@ function getFile(path, callback) {
           }
         }
       }
-    }
+    };
 
     xhr.send(null);
 
   }
   else {
-    throw new Error('XMLHttpRequest or ActiveXObject is not available. Cannot get file.')
+    throw new Error('XMLHttpRequest or ActiveXObject is not available. Cannot get file.');
   }
 
 }
